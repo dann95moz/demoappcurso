@@ -1,0 +1,12 @@
+.table {
+    background-color: lightsteelblue;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 1;
+  }
+  
