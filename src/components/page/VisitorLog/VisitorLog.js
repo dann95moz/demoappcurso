@@ -29,29 +29,28 @@ export default function () {
   };
   const searchUsers = (q) => { //funcion para buscar los usuarios
     if (q!=="") { // si el valor de busqueda q es diferente a vacio
-      const fusers = users.filter((user) => { //variable que almacena 
-        const name = user.name.trim().toLowerCase();
-        const searched = q.trim().toLowerCase();
-        console.log(name, searched);
-        return name.includes(searched)
-        
+      const fusers = users.filter((user) => { //variable que almacena la informacion filtrada
+        const name = user.name.trim().toLowerCase();//variable que almacena cambios a user(remueve espacios y pasa todo a minuscula)
+        const searched = q.trim().toLowerCase();//variable que almacena cambios al valor buscado(remueve espacios y pasa todo a minuscula)
+        return name.includes(searched) //retorna el nombre que incluye el valor buscado
       })
-      setFilteredUsers(fusers)
+      setFilteredUsers(fusers)//altera el valor de Filtered Users a través de setFilteredUsers con el valor de fusers
     } else {
-      setFilteredUsers(null)
+      setFilteredUsers(null)//si el valor filtrado es vacío altera el valor de users a través de setFilteredUsers a null
     }
    }
 
-    const deleteUser = (userId) => {
+    const deleteUser = (userId) => {//funcion que borra el usuario
       setUsers(users.filter(user => user.id !== userId))//recorre los datos y crea un array sin el valor al que es igual
   };
 
-  return (
+  return (//lo que retorna en html
     <>
-      <div>Visitor Log</div>
-      <Search onSearch={searchUsers} />
-      <DataTable users={filteredUsers||users} deleteUser={deleteUser} />
-      <Form addUser={addUser} />
+      <div>Visitor Log</div>{/* titulo */}
+      <Search onSearch={searchUsers} />{/* le envia al componente search la prop onSearch={searchUsers} */}
+      <DataTable users={filteredUsers||users} deleteUser={deleteUser} />{/* le envia al componente DataTable la prop filteredUsers, 
+      si hay usuarios filtrados los muestra si no muestra users. También envia la prop deleteUser */}
+      <Form addUser={addUser} />{/* le envia al componente search la prop addUser={addUser} */}
     </>
   );
 }
